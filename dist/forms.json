@@ -1,0 +1,24 @@
+{
+    "forms": [
+        {"formName": "form1",  "required": false},
+        {"formName": "form2",  "required": false},
+        {"formName": "form3",  "required": true},
+        {"formName": "form4",  "required": false},
+        {"formName": "form5",  "required": true},
+        {"formName": "form6",  "required": false},
+        {"formName": "form7",  "required": true},
+        {"formName": "form8",  "required": false},
+        {"formName": "form9",  "required": false},
+        {"formName": "form10", "required": false},
+        {"formName": "form11", "required": true},
+        {"formName": "form12", "required": false},
+        {"formName": "form13", "required": false},
+        {"formName": "form14", "required": true},
+        {"formName": "form15", "required": false},
+        {"formName": "form16", "required": true},
+        {"formName": "form17", "required": false},
+        {"formName": "form18", "required": false},
+        {"formName": "form19", "required": false},
+        {"formName": "form20", "required": false}
+    ]
+}

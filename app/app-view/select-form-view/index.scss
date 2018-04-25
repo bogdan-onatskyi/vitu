@@ -1,0 +1,15 @@
+@import '../../app.scss';
+
+.select-form-view {
+  flex: 1;
+  box-sizing: border-box;
+  padding: $half-unit;
+  min-width: $select-form-min-width;
+
+  h1 {
+    padding: $base-unit;
+    margin: $half-unit auto;
+
+    @include box-shadow();
+  }
+}

@@ -1,0 +1,54 @@
+@import '../../app.scss';
+
+$select-min-width: 150px;
+$font-size: 18px;
+$controls-font-size: 15px;
+$debug-font-size: 12px;
+
+.select-form {
+  box-sizing: border-box;
+
+  font-size: $font-size;
+
+  @include box-shadow();
+  min-width: $select-form-min-width;
+
+  padding: $base-unit;
+  margin: auto;
+
+  &__title {
+    padding: $half-unit 0;
+    font-weight: bold;
+  }
+
+  &__row {
+    padding: $quarter-unit 0;
+
+    &--select, &--button {
+      height: 2*$base-unit;
+      min-height: 2*$base-unit;
+      font-size: $controls-font-size;
+    }
+
+    &--select {
+      min-width: $select-min-width;
+    }
+
+    &--button {
+      min-width: 2*$base-unit;
+
+      &.bold {
+        font-weight: bold;
+      }
+    }
+
+    &.debug-info {
+      font-size: $debug-font-size;
+      color: gray;
+
+      margin: $half-unit 0 $half-unit $base-unit;
+      padding-left: $base-unit;
+      border-left: 1px solid black;
+    }
+  }
+}

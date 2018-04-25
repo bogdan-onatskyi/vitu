@@ -1,0 +1,15 @@
+@import '../../app.scss';
+
+.form-view {
+  flex: 1;
+
+  box-sizing: border-box;
+  padding: $half-unit;
+
+  display: flex;
+  flex-direction: row;
+  @media only screen and (max-width: ($table-widget-min-width + $base-unit) * 3) {
+    flex-direction: column;
+  }
+  justify-content: center;
+}

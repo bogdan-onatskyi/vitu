@@ -1,0 +1,39 @@
+@import '../../app.scss';
+
+.table-widget {
+  box-sizing: border-box;
+
+  @include box-shadow();
+  min-width: $table-widget-min-width;
+  height: 100%;
+
+  padding: $base-unit;
+  margin: 0 $half-unit;
+  @media only screen and (max-width: ($table-widget-min-width + $base-unit) * 3) {
+    margin: $half-unit 0;
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+
+  &__row {
+    display: flex;
+
+    &.title {
+      font-weight: bold;
+    }
+
+    .counter {
+      flex: 0 0 30px;
+    }
+
+    .name {
+      flex: 1 1 auto;
+    }
+
+    .required {
+      flex: 0 0 50px;
+    }
+  }
+}

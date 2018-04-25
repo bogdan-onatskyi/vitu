@@ -1,0 +1,35 @@
+@import '../../app.scss';
+
+$color-links: #F2F2F2;
+$color-background: #333;
+
+$color-active-link: $color-background;
+$color-background-active-link: #0791af;
+
+$color-background-hover: #DDD;
+
+$font-size-links: 16px;
+
+.menu-bar {
+  background-color: $color-background;
+  overflow: hidden;
+
+  a {
+    float: left;
+    color: $color-links;
+    text-align: center;
+    padding: $half-unit $base-unit;
+    text-decoration: none;
+    font-size: $font-size-links;
+
+    &:hover {
+      background-color: $color-background-hover;
+      color: black;
+    }
+  }
+
+  .active {
+    background-color: $color-background-active-link;
+    color: white;
+  }
+}

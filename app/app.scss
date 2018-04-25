@@ -1,0 +1,10 @@
+$base-unit: 16px;
+$half-unit: 8px;
+$quarter-unit: 4px;
+
+$select-form-min-width: 320px;
+$table-widget-min-width: 200px;
+
+@mixin box-shadow() {
+  box-shadow: 0 0 $base-unit rgba(0, 0, 0, 0.2);
+}
