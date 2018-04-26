@@ -35,8 +35,14 @@ class SelectFormViewController implements ng.IController {
 export class SelectFormViewComponent implements ng.IComponentOptions {
     static NAME: string = 'selectFormView';
     controller: any = SelectFormViewController;
-    templateUrl: any = require('./index.html');
+    template: string = `
+        <div class="select-form-view">
+            <h1>SELECT FORM COMPONENT</h1>
 
-    constructor() {
-    }
+            <select-form
+                ng-model="selectedForms"
+                forms="availableForms">
+            </select-form>
+        </div>
+    `;
 }

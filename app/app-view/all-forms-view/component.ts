@@ -22,8 +22,11 @@ class AllFormsController implements ng.IController {
 export class AllFormsComponent implements ng.IComponentOptions {
     static NAME: string = 'formView';
     controller: any = AllFormsController;
-    templateUrl: any = require('./index.html');
-
-    constructor() {
-    }
+    template: string = `
+        <div class="form-view">
+            <table-widget name="All forms:" forms="allForms"></table-widget>
+            <table-widget name="Available forms:" forms="availableForms"></table-widget>
+            <table-widget-selected name="Selected forms:" forms="selectedForms"></table-widget-selected>
+        </div>
+    `;
 }

@@ -1,6 +1,5 @@
-import { IState } from 'angular-ui-router';
-
 import './index.scss';
+import {StateService} from '@uirouter/angularjs';
 
 interface IMenuData {
     state: string;
@@ -8,7 +7,7 @@ interface IMenuData {
 }
 
 interface IMenuBarScope extends ng.IScope {
-    state: IState;
+    state: StateService;
 }
 
 class MenuBarController implements ng.IController {
@@ -20,7 +19,7 @@ class MenuBarController implements ng.IController {
     ];
 
     constructor(private _scope: IMenuBarScope,
-                private _state: ng.ui.IStateService) {
+                private _state: StateService) {
         _scope.state = _state;
     }
 }
@@ -28,8 +27,13 @@ class MenuBarController implements ng.IController {
 export class MenuBarComponent implements ng.IComponentOptions {
     static NAME: string = 'menuBar';
     controller: any = MenuBarController;
-    templateUrl: any = require('./index.html');
-
-    constructor() {
-    }
+    template: string = `
+        <div class="menu-bar">
+            <a ng-repeat="item in $ctrl.menuData track by $index"
+               ui-sref={{item.state}}
+               ng-class="{ active: state.includes(item.state) }">
+                {{item.title}}
+            </a>
+        </div>
+    `;
 }
