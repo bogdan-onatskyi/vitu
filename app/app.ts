@@ -1,5 +1,6 @@
 import { module, element, bootstrap } from 'angular';
 import '@uirouter/angularjs';
+import {StateProvider, UrlRouterProvider} from '@uirouter/angularjs';
 
 import { AppComponent } from './app-view/component';
 import { MenuBarComponent } from './components/menu-bar/component';
@@ -16,7 +17,7 @@ export const app = module('app', ['ui.router'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
-        ($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
+        ($stateProvider: StateProvider, $urlRouterProvider: UrlRouterProvider) => {
             $stateProvider
                 .state({
                     name: 'app',

@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
+//        "outDir": "./dist/",
         "sourceMap": true,
         "noImplicitAny": false,
         "module": "commonjs",
@@ -9,8 +9,7 @@
         "types" : [
             "angular",
             "angular-mocks",
-            "jasmine",
-            "node"
+            "jasmine"
         ]
     }
 }

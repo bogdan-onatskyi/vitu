@@ -1,7 +1,7 @@
 import { IHttpResponse } from 'angular';
 import { IFormObject } from '../interfaces/IFormObject';
 
-interface IFormResponse {
+export interface IFormResponse {
     forms: IFormObject[];
 }
 
