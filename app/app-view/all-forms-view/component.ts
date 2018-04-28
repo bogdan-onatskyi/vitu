@@ -3,24 +3,27 @@ import { AllFormsService } from '../../services/all-forms.service';
 
 import './index.scss';
 
-export class AllFormsController implements ng.IController {
+export class AllFormsViewController implements ng.IController {
     static $inject: string[] = ['$scope', 'allFormsService'];
 
-    constructor(private _scope: IFormsScope,
-                private _allFormsService: AllFormsService) {
+    constructor(public scope: IFormsScope,
+                public allFormsService: AllFormsService) {
+        scope.allForms = [];
+        scope.availableForms = [];
+        scope.selectedForms = [];
     }
 
     $onInit(): void {
-        this._allFormsService.initService(() => {
-            this._scope.allForms = this._allFormsService.allForms;
-            this._scope.availableForms = this._allFormsService.availableForms;
-            this._scope.selectedForms = this._allFormsService.selectedForms;
+        this.allFormsService.initService(() => {
+            this.scope.allForms = this.allFormsService.allForms;
+            this.scope.availableForms = this.allFormsService.availableForms;
+            this.scope.selectedForms = this.allFormsService.selectedForms;
         });
     }
 }
 
-export class AllFormsComponent implements ng.IComponentOptions {
-    static NAME: string = 'formView';
-    controller: any = AllFormsController;
+export class AllFormsViewComponent implements ng.IComponentOptions {
+    static NAME: string = 'allFormsView';
+    controller: any = AllFormsViewController;
     templateUrl: string = require('./index.html');
 }

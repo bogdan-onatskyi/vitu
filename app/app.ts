@@ -5,7 +5,7 @@ import {StateProvider, UrlRouterProvider} from '@uirouter/angularjs';
 import { AppComponent } from './app-view/component';
 import { MenuBarComponent } from './components/menu-bar/component';
 import { SelectFormViewComponent } from './app-view/select-form-view/component';
-import { AllFormsComponent } from './app-view/all-forms-view/component';
+import { AllFormsViewComponent } from './app-view/all-forms-view/component';
 import { FooterComponent } from './components/footer/component';
 import { SelectFormComponent } from './components/select-form/component';
 import { TableWidgetComponent } from './components/table-widget/component';
@@ -32,14 +32,14 @@ export const app = module('app', ['ui.router'])
                 .state({
                     name: 'app.allFormsView',
                     url: '/all-forms-view',
-                    component: AllFormsComponent.NAME,
+                    component: AllFormsViewComponent.NAME,
                 });
             $urlRouterProvider.otherwise('/app');
         }])
     .component(AppComponent.NAME, new AppComponent())
     .component(MenuBarComponent.NAME, new MenuBarComponent())
     .component(SelectFormViewComponent.NAME, new SelectFormViewComponent())
-    .component(AllFormsComponent.NAME, new AllFormsComponent())
+    .component(AllFormsViewComponent.NAME, new AllFormsViewComponent())
     .component(FooterComponent.NAME, new FooterComponent())
 
     .component(SelectFormComponent.NAME, new SelectFormComponent())
