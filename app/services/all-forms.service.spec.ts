@@ -1,11 +1,7 @@
 import * as angular from 'angular';
-import '@uirouter/angularjs';
 import 'angular-mocks';
 
 import { AllFormsService, IFormResponse } from './all-forms.service';
-
-import { IHttpResponse } from 'angular';
-import { IFormObject } from '../interfaces/IFormObject';
 
 describe('AllFormsService:', () => {
 
@@ -37,36 +33,12 @@ describe('AllFormsService:', () => {
         ]
     };
 
-    const isEqualArrays = (a: IFormObject[], b: IFormObject[]) => {
-        const length = a.length;
-
-        if (length !== b.length) {
-            return false;
-        }
-
-        for (let i = 0; i < length; i++) {
-            if (a[i].formName !== b[i].formName) {
-                return false;
-            }
-
-            if (a[i].required !== b[i].required) {
-                return false;
-            }
-        }
-
-        return true;
-    };
-
-    beforeEach(angular.mock.module('ui.router'));
-
     beforeEach(angular.mock.module('app'));
 
-    beforeEach(() => {
-        angular.mock.inject((_$httpBackend_, allFormsService) => {
-            $httpBackend = _$httpBackend_;
-            service = allFormsService;
-        });
-    });
+    beforeEach(angular.mock.inject((_$httpBackend_, allFormsService) => {
+        $httpBackend = _$httpBackend_;
+        service = allFormsService;
+    }));
 
     afterEach(() => {
         $httpBackend.verifyNoOutstandingExpectation();
@@ -77,43 +49,50 @@ describe('AllFormsService:', () => {
         expect(service).toBeDefined();
     });
 
-    it('getAll() should get forms', (done: () => void) => {
+    it('service members should exist', () => {
+        expect(AllFormsService.NAME).toBe('allFormsService');
+        expect(AllFormsService.$inject).toEqual(['$http']);
+
+        expect(service.isDownloaded).toBeDefined();
+        expect(service.isDownloaded).toBe(false);
+
+        expect(service.allForms).toBeDefined();
+        expect(service.allForms).toEqual([]);
+
+        expect(service.availableForms).toBeDefined();
+        expect(service.availableForms).toEqual([]);
+
+        expect(service.selectedForms).toBeDefined();
+        expect(service.selectedForms).toEqual([]);
+
+        expect(service.getAll).toBeDefined();
+        expect(service.initService).toBeDefined();
+    });
+
+    it('service.getAll() should get all forms', () => {
 
         $httpBackend.expectGET('forms.json').respond(fakeData);
 
         service.getAll()
-            .then((response: IHttpResponse<IFormResponse>): void => {
-                const {forms} = response.data;
-
-                expect(forms.length).toEqual(20);
-                expect(isEqualArrays(fakeData.forms, forms)).toBe(true);
-
-                done();
+            .then((response: angular.IHttpResponse<IFormResponse>): void => {
+                expect(response.data).toEqual(fakeData);
             });
 
         $httpBackend.flush();
     });
 
-    it('initService() should download data from "forms.json" if isDownloaded = false',
-        (done: () => void) => {
-
+    it('service.initService() should download data from "forms.json" if service.isDownloaded === false',
+        () => {
             service.isDownloaded = false;
-
-            service.allForms = [];
-            service.availableForms = [];
 
             spyOn(service, 'getAll').and.callThrough();
 
             $httpBackend.expectGET('forms.json').respond(fakeData);
 
             service.initService(() => {
-                expect(service.allForms.length).toEqual(20);
-                expect(isEqualArrays(fakeData.forms, service.allForms)).toBe(true);
-
-                expect(service.availableForms.length).toEqual(20);
-                expect(isEqualArrays(fakeData.forms, service.availableForms)).toBe(true);
-
-                done();
+                expect(service.allForms).toEqual(fakeData.forms);
+                expect(service.availableForms).toEqual(fakeData.forms);
+                expect(service.selectedForms).toEqual([]);
             });
 
             $httpBackend.flush();
@@ -122,21 +101,16 @@ describe('AllFormsService:', () => {
         }
     );
 
-    it('initService() should NOT download data from "forms.json" if isDownloaded = true',
-        (done: () => void) => {
-
+    it('service.initService() should NOT download data from "forms.json" if service.isDownloaded === true',
+        () => {
             service.isDownloaded = true;
-
-            service.allForms = [];
-            service.availableForms = [];
 
             spyOn(service, 'getAll').and.callThrough();
 
             service.initService(() => {
-                expect(service.allForms.length).toEqual(0);
-                expect(service.availableForms.length).toEqual(0);
-
-                done();
+                expect(service.allForms).toEqual([]);
+                expect(service.availableForms).toEqual([]);
+                expect(service.selectedForms).toEqual([]);
             });
 
             expect(service.getAll).not.toHaveBeenCalled();
