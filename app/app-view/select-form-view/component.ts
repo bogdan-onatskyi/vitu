@@ -3,7 +3,7 @@ import { AllFormsService } from '../../services/all-forms.service';
 
 import './index.scss';
 
-class SelectFormViewController implements ng.IController {
+export class SelectFormViewController implements ng.IController {
     static $inject: string[] = ['$scope', 'allFormsService'];
 
     constructor(public scope: IFormsScope,
@@ -35,14 +35,5 @@ class SelectFormViewController implements ng.IController {
 export class SelectFormViewComponent implements ng.IComponentOptions {
     static NAME: string = 'selectFormView';
     controller: any = SelectFormViewController;
-    template: string = `
-        <div class="select-form-view">
-            <h1>SELECT FORM COMPONENT</h1>
-
-            <select-form
-                ng-model="selectedForms"
-                forms="availableForms">
-            </select-form>
-        </div>
-    `;
+    templateUrl: string = require('./index.html');
 }

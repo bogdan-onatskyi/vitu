@@ -10,7 +10,7 @@ interface IMenuBarScope extends ng.IScope {
     state: StateService;
 }
 
-class MenuBarController implements ng.IController {
+export class MenuBarController implements ng.IController {
     static $inject: string[] = ['$scope', '$state'];
 
     menuData: IMenuData[] = [
@@ -27,13 +27,5 @@ class MenuBarController implements ng.IController {
 export class MenuBarComponent implements ng.IComponentOptions {
     static NAME: string = 'menuBar';
     controller: any = MenuBarController;
-    template: string = `
-        <div class="menu-bar">
-            <a ng-repeat="item in $ctrl.menuData track by $index"
-               ui-sref={{item.state}}
-               ng-class="{ active: state.includes(item.state) }">
-                {{item.title}}
-            </a>
-        </div>
-    `;
+    templateUrl: string = require('./index.html');
 }
