@@ -25,10 +25,6 @@ export class SelectFormViewController implements ng.IController {
         this.allFormsService.allForms = this.scope.allForms;
         this.allFormsService.availableForms = this.scope.availableForms;
         this.allFormsService.selectedForms = this.scope.selectedForms;
-
-        console.log('$onDestroy: ', this.scope.selectedForms);
-        console.log('$onDestroy: ', this.scope.availableForms);
-        console.log('$onDestroy: ', this.scope.selectedForms);
     }
 }
 
