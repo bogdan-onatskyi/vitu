@@ -1,7 +1,7 @@
 import './index.scss';
 import { StateService } from '@uirouter/angularjs';
 
-class AppController implements ng.IController {
+export class AppViewController implements ng.IController {
     static $inject = ['$state'];
 
     constructor(public $state: StateService) {
@@ -9,8 +9,8 @@ class AppController implements ng.IController {
     }
 }
 
-export class AppComponent implements ng.IComponentOptions {
+export class AppViewComponent implements ng.IComponentOptions {
     static NAME: string = 'appView';
-    controller: any = AppController;
+    controller: any = AppViewController;
     templateUrl: string = require('./index.html');
 }

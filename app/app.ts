@@ -2,7 +2,7 @@ import { module, element, bootstrap } from 'angular';
 import '@uirouter/angularjs';
 import {StateProvider, UrlRouterProvider} from '@uirouter/angularjs';
 
-import { AppComponent } from './app-view/component';
+import { AppViewComponent } from './app-view/component';
 import { MenuBarComponent } from './components/menu-bar/component';
 import { SelectFormViewComponent } from './app-view/select-form-view/component';
 import { AllFormsViewComponent } from './app-view/all-forms-view/component';
@@ -22,7 +22,7 @@ export const app = module('app', ['ui.router'])
                 .state({
                     name: 'app',
                     url: '/app',
-                    component: AppComponent.NAME
+                    component: AppViewComponent.NAME
                 })
                 .state({
                     name: 'app.selectFormView',
@@ -36,7 +36,7 @@ export const app = module('app', ['ui.router'])
                 });
             $urlRouterProvider.otherwise('/app');
         }])
-    .component(AppComponent.NAME, new AppComponent())
+    .component(AppViewComponent.NAME, new AppViewComponent())
     .component(MenuBarComponent.NAME, new MenuBarComponent())
     .component(SelectFormViewComponent.NAME, new SelectFormViewComponent())
     .component(AllFormsViewComponent.NAME, new AllFormsViewComponent())
