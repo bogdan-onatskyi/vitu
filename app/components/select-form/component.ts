@@ -2,7 +2,7 @@ import { IFormObject } from '../../interfaces/IFormObject';
 
 import './index.scss';
 
-interface ISelectedFormObject extends IFormObject {
+export interface ISelectedFormObject extends IFormObject {
     isEditing: boolean;
     editModel: IFormObject;
 }
@@ -28,17 +28,17 @@ export class SelectFormController implements ng.IController {
     forms: IFormObject[] = [];
     ngModel: string[] = [];
 
-    constructor(public $scope: ISelectFormScope) {
-        $scope.forms = this.forms;
-        $scope.selectedForms = [];
+    constructor(public scope: ISelectFormScope) {
+        scope.forms = this.forms;
+        scope.selectedForms = [];
 
-        $scope.selectModel = null;
+        scope.selectModel = null;
 
-        $scope.isEditing = false;
+        scope.isEditing = false;
 
-        $scope.showDebugInfo = true;
+        scope.showDebugInfo = true;
 
-        $scope.onChangeSelect = function (): void {
+        scope.onChangeSelect = function (): void {
             if (this.selectModel) {
                 const {formName, required} = this.selectModel;
 
@@ -56,7 +56,7 @@ export class SelectFormController implements ng.IController {
 
     $onChanges(changes): void {
         if (changes.forms) {
-            const scope = this.$scope;
+            const scope = this.scope;
 
             scope.forms = [...changes.forms.currentValue];
             scope.selectModel = scope.forms[0];
@@ -85,7 +85,7 @@ export class SelectFormController implements ng.IController {
     }
 
     onAddForm(form: IFormObject): void {
-        const scope = this.$scope;
+        const scope = this.scope;
 
         if (form) {
             console.log('Add form:', form);
@@ -104,7 +104,7 @@ export class SelectFormController implements ng.IController {
     }
 
     onDeleteForm(form: IFormObject): void {
-        const scope = this.$scope;
+        const scope = this.scope;
 
         if (form) {
             console.log('Delete form:', form);
@@ -123,10 +123,8 @@ export class SelectFormController implements ng.IController {
 
         console.log(form);
 
-        const scope = this.$scope;
+        const scope = this.scope;
         const {isEditing} = form;
-
-        console.log(isEditing);
 
         if (isEditing &&
             (form.editModel !== null) &&
@@ -158,7 +156,7 @@ export class SelectFormController implements ng.IController {
     }
 
     onSaveList(): void {
-        const scope = this.$scope;
+        const scope = this.scope;
 
         this.ngModel = [];
         scope.selectedForms.forEach(
