@@ -1,14 +1,28 @@
 import './index.scss';
 
-interface ITableWidgetSelectedScope extends ng.IScope {
-    handleAction: () => void;
+export interface ITableWidgetSelectedScope extends ng.IScope {
+    forms: string[];
+    name: string;
 }
 
-export class TableWidgetSelectedController {
+interface ITableWidgetSelectedController extends ng.IController {
+    name: string;
+    forms: string[];
+}
+
+export class TableWidgetSelectedController implements ITableWidgetSelectedController {
     static $inject: string[] = ['$scope'];
 
-    constructor(private _scope: ITableWidgetSelectedScope) {
-        _scope.handleAction = () => console.log('handleAction');
+    name: string = '';
+    forms: string[] = [];
+
+    constructor(public scope: ITableWidgetSelectedScope) {
+        this.scope = scope;
+    }
+
+    $onInit(): void {
+        this.scope.name = this.name;
+        this.scope.forms = this.forms;
     }
 }
 
