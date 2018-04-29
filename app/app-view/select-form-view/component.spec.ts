@@ -48,7 +48,7 @@ describe('SelectFormViewController:', () => {
 
     it('component should get data from AllFormsService', inject(($httpBackend, $compile) => {
         httpBackend = $httpBackend;
-        httpBackend.when('GET', url => url.indexOf('forms.json') === -1).respond('');
+        httpBackend.when('GET', url => url.indexOf('forms.json') === -1).respond(200, {});
         httpBackend.expect('GET', 'forms.json').respond(response);
 
         element = angular.element('<select-form-view></select-form-view>');

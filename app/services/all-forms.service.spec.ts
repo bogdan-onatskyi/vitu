@@ -70,7 +70,6 @@ describe('AllFormsService:', () => {
     });
 
     it('service.getAll() should get all forms', () => {
-
         $httpBackend.expectGET('forms.json').respond(fakeData);
 
         service.getAll()
@@ -79,6 +78,10 @@ describe('AllFormsService:', () => {
             });
 
         $httpBackend.flush();
+    });
+
+    it('service.getAll() should NOT get data if HTTP error', () => {
+        // todo: add test for error handling
     });
 
     it('service.initService() should download data from "forms.json" if service.isDownloaded === false',
