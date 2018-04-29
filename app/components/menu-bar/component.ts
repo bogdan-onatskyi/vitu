@@ -1,26 +1,24 @@
 import './index.scss';
-import {StateService} from '@uirouter/angularjs';
+import { StateService } from '@uirouter/angularjs';
 
 interface IMenuData {
     state: string;
     title: string;
 }
 
-interface IMenuBarScope extends ng.IScope {
-    state: StateService;
+interface IMenuBarController extends ng.IController {
+    menuData: IMenuData[];
 }
 
-export class MenuBarController implements ng.IController {
-    static $inject: string[] = ['$scope', '$state'];
+export class MenuBarController implements IMenuBarController {
+    static $inject: string[] = ['$state'];
 
     menuData: IMenuData[] = [
         {state: 'app.selectFormView', title: 'Select-form'},
         {state: 'app.allFormsView', title: 'All forms'},
     ];
 
-    constructor(private _scope: IMenuBarScope,
-                private _state: StateService) {
-        _scope.state = _state;
+    constructor(public state: StateService) {
     }
 }
 
