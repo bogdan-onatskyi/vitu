@@ -1,14 +1,30 @@
+import { IFormObject } from '../../interfaces/IFormObject';
+
 import './index.scss';
 
-interface ITableWidgetScope extends ng.IScope {
-    handleAction: () => void;
+export interface ITableWidgetScope extends ng.IScope {
+    forms: IFormObject[];
+    name: string;
 }
 
-export class TableWidgetController {
+interface ITableWidgetController extends ng.IController {
+    name: string;
+    forms: IFormObject[];
+}
+
+export class TableWidgetController implements ITableWidgetController {
     static $inject: string[] = ['$scope'];
 
-    constructor(private _scope: ITableWidgetScope) {
-        _scope.handleAction = () => console.log('handleAction');
+    name: string = '';
+    forms: IFormObject[] = [];
+
+    constructor(public scope: ITableWidgetScope) {
+        this.scope = scope;
+    }
+
+    $onInit(): void {
+        this.scope.name = this.name;
+        this.scope.forms = this.forms;
     }
 }
 
